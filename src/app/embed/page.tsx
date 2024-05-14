@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { FooterT1, HeaderT1, MainT1 } from "@/components/Templates/Template-1";
 
@@ -47,12 +48,20 @@ function EmbeddedContent() {
   );
 }
 
+function SuspenseEmbeddedContent() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <EmbeddedContent />
+    </Suspense>
+  );
+}
+
 export default function Embed() {
   return (
     <>
       <HeaderT1 />
       <MainT1>
-        <EmbeddedContent />
+        <SuspenseEmbeddedContent />
       </MainT1>
       <FooterT1 />
     </>
