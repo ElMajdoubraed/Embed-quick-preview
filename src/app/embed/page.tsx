@@ -11,12 +11,13 @@ function EmbeddedContent() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const embedCode = searchParams.get("code");
+    const embedCode: string = searchParams.get("code") || "";
+    const domain: string = searchParams.get("domain") || "";
 
     if (typeof window !== "undefined" && !scriptAppended && embedCode) {
       // Check if script has not been appended yet
       const script = document.createElement("script");
-      script.src = "https://test1.leadshook.test/s/js_embed";
+      script.src = domain + "/s/js_embed";
       script.async = true;
       script.onload = () => {
         setRender(true);
