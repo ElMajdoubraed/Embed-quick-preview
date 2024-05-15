@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Template1, Template2 } from "@/templates";
+import { Template1, Template2, Template3 } from "@/templates";
 import { TLoading } from "@/components/Loadings";
 import SuspenseEmbeddedContent from "@/helpers/SuspenseEmbeddedContent";
 
@@ -25,6 +25,12 @@ export default function Embed() {
         <Template2>
           <SuspenseEmbeddedContent />
         </Template2>
+      );
+    case "3":
+      return (
+        <Template3>
+          <SuspenseEmbeddedContent />
+        </Template3>
       );
     default:
       return <TLoading />;
