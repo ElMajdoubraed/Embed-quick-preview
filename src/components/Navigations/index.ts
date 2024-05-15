@@ -1,3 +1,4 @@
 import Drawer from "./Drawer";
+import Navbar from "./Navbar";
 
-export { Drawer };
+export { Drawer, Navbar };

@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { FooterT1, HeaderT1, MainT1 } from "@/components/Templates/Template-1";
+import { Template1, Template2 } from "@/templates";
+import { TLoading } from "@/components/Loadings";
 
 function EmbeddedContent() {
   const [render, setRender] = useState(false);
@@ -58,13 +59,25 @@ function SuspenseEmbeddedContent() {
 }
 
 export default function Embed() {
-  return (
-    <>
-      <HeaderT1 />
-      <MainT1>
-        <SuspenseEmbeddedContent />
-      </MainT1>
-      <FooterT1 />
-    </>
-  );
+  const [usedTemplate, setUsedTemplate] = useState<string>();
+  useEffect(() => {
+    const usedTemplate = localStorage.getItem("template") || "2";
+    setUsedTemplate(usedTemplate);
+  }, []);
+  switch (usedTemplate) {
+    case "1":
+      return (
+        <Template1>
+          <SuspenseEmbeddedContent />
+        </Template1>
+      );
+    case "2":
+      return (
+        <Template2>
+          <SuspenseEmbeddedContent />
+        </Template2>
+      );
+    default:
+      return <TLoading />;
+  }
 }
