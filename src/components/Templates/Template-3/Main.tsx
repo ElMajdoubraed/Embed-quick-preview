@@ -76,7 +76,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
         <h1 className="mb-8 text-2xl Avenir font-semibold text-gray-600 text-center">
           {"Minify your CSS with Tailwind's built in PostCSS support."}
         </h1>
-        <div className="container flex flex-col items-center justify-center mx-auto rounded-lg ">
+        <div className="container items-center justify-center mx-auto rounded-lg ">
           {children}
         </div>
       </div>
