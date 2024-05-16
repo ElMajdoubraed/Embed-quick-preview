@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { DUseTemplate } from "../Dialogs";
 
 const CTemplate: React.FC<CTemplateProps> = ({
   id,
@@ -8,6 +9,13 @@ const CTemplate: React.FC<CTemplateProps> = ({
   image,
   path,
 }: CTemplateProps) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleUseTemplate = () => {
+    localStorage.setItem("template", id);
+    setOpen(true);
+  };
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
@@ -23,7 +31,7 @@ const CTemplate: React.FC<CTemplateProps> = ({
           {description}
         </p>
         <button
-          onClick={() => localStorage.setItem("template", id)}
+          onClick={handleUseTemplate}
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Use Template
@@ -44,6 +52,7 @@ const CTemplate: React.FC<CTemplateProps> = ({
           </svg>
         </button>
       </div>
+      <DUseTemplate open={open} setOpen={setOpen} props={{ id, title, path }} />
     </div>
   );
 };
